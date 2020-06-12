@@ -12,24 +12,12 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Employee $employee)
     {
         //
-        $employees = Employee::all();
-
-        return response()->json(['employees'=> $employees], 200);
+        return $employee->all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-        
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,10 +25,10 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Employee $employee)
     {
         //
-        Employee::create($request->all());
+        $employee->create($request->all());
 
         return response()->json(['success' => 'User Created', 'user_details' => $request->all()], 200);
     }
@@ -51,22 +39,18 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(Request $request, Employee $employee)
     {
         //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Employee $employee)
-    {
-        //
+        if(!empty($employee)){
+            return $employee;
+        }else{
+            return response()->json("Employee $employee->id not found", 404);
+        }
 
     }
+
+   
 
     /**
      * Update the specified resource in storage.
@@ -77,10 +61,9 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
-        Employee::update($request->all());
+         $employee->update($request->all());
 
-        return response()->json(["success" => "User $employee Updated"], 200);
+        return response()->json($employee, 200);
     }
 
     /**
@@ -92,6 +75,10 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
-        Employee::delete($employee)
+        if($employee->delete()){
+            return $employee;
+        }else{
+            return response()->json("Employee $employee->id not found", 404);
+        }
     }
 }
