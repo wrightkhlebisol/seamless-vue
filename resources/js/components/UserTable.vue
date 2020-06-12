@@ -33,8 +33,8 @@
                     <p>{{ users.created_at }}</p>
                 </td>
                 <td class="border px-4 py-2">
-                    <span> Update </span>
-                    <span>Delete</span>
+                    <span @click="alert(users.id)"> Update </span>
+                    <span @click="alert(users.id)">Delete</span>
                 </td>
             </tr>
         </tbody>

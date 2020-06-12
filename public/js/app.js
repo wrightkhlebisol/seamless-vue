@@ -37632,7 +37632,31 @@ var render = function() {
             _c("p", [_vm._v(_vm._s(users.created_at))])
           ]),
           _vm._v(" "),
-          _vm._m(1, true)
+          _c("td", { staticClass: "border px-4 py-2" }, [
+            _c(
+              "span",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.alert(users.id)
+                  }
+                }
+              },
+              [_vm._v(" Update ")]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                on: {
+                  click: function($event) {
+                    return _vm.alert(users.id)
+                  }
+                }
+              },
+              [_vm._v("Delete")]
+            )
+          ])
         ])
       }),
       0
@@ -37658,16 +37682,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("MANAGE")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "border px-4 py-2" }, [
-      _c("span", [_vm._v(" Update ")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Delete")])
     ])
   }
 ]
