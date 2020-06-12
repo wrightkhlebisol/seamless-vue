@@ -15,7 +15,9 @@ class EmployeeController extends Controller
     public function index()
     {
         //
-        return Employee::all();
+        $employees = Employee::all();
+
+        return response()->json(['employees'=> $employees], 200);
     }
 
     /**
@@ -38,6 +40,9 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //
+        Employee::create($request->all());
+
+        return response()->json(['success' => 'User Created', 'user_details' => $request->all()], 200);
     }
 
     /**
@@ -60,6 +65,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         //
+
     }
 
     /**
@@ -72,6 +78,9 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         //
+        Employee::update($request->all());
+
+        return response()->json(["success" => "User $employee Updated"], 200);
     }
 
     /**
@@ -83,5 +92,6 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+        Employee::delete($employee)
     }
 }

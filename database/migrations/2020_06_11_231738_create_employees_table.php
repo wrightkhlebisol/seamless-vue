@@ -19,8 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->text('employee_role');
             $table->text('employee_salary');
             $table->text('employment_type');
-            $table->text('employee_name');
-            $table->text('employee_name');
+            $table->text('employment_status');
             $table->timestamps();
         });
     }
