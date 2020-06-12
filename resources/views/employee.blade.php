@@ -1,28 +1,55 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-		<title>Laravel</title>
-
-		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-		
-	</head>
-	<body>
-		<div class="flex-center position-ref full-height" id="app">
-		   <div class="container mx-auto my-100 w-500">
-			<div class="container bg-white">Internia</div>
-			<div class="container bg-gray-200">
-				<div class="container">
-				<h2>employee</h2>
-				<div class="containe bg-white">
-					<p>All Employees</p>
+@section('content')
+	<div class="container mx-auto my-10 w-500 shadow-2xl rounded-lg">
+		<div class="container py-6 px-4 mb-5 flex bg-white rounded-t-lg">
+			<div class="flex-1">Internia</div>
+			<div class="flex-1">
+				<div class="flex">
+					<div class="flex-1">Calendar</div>
+					<div class="flex-1">Statistic</div>
+					<div class="flex-1">Employee</div>
+					<div class="flex-1">Client</div>
+					<div class="flex-1">Equipment</div>
 				</div>
-				</div>
-				<div class="container bg-yellow-500">add employee</div>
 			</div>
+			<div class="flex-1">Profile</div>
+		</div>
+
+		<div class="container flex bg-gray-300 rounded-b-lg">
+			<div class="flex-1 px-5">
+				<h2 class="py-5">employee</h2>
+				<div class="flex flex-col bg-white px-5 shadow-2xl rounded-lg">
+					<h3>All Employees</h3>
+
+					<h5>PROJECT</h5>
+
+					<div class="flex-1 rounded-md">Arena Sport</div>
+					<div class="flex-1 rounded-md">Arena Sport</div>
+					<div class="flex-1 rounded-md">Arena Sport</div>
+					<div class="flex-1 rounded-md">Arena Sport</div>
+					<div class="flex-1 rounded-md">Arena Sport</div>
+					<div class="flex-1 rounded-md">Arena Sport</div>
+
+					<div class="br-5 p-5 bg-purple-500 color-accent rounded-full">add project</div>
+				</div>
+			</div>
+			<div class="flex-1 px-5">
+				<h2 class="py-5">add employee</h2>
+				<div class="flex flex-col pb-5">
+					<div class="flex-1 pb-3">
+						<div class="flex">
+							<div class="flex-1"></div>
+							<div class="flex-1">EMPLOYEE</div>
+							<div class="flex-1">SALARY</div>
+							<div class="flex-1">STATUS</div>
+							<div class="flex-1">MANAGE</div>
+						</div>
+					</div>
+					<div class="flex-1 bg-white pb-3 shadow-2xl rounded">Employee Details</div>
+					<div class="flex-1 bg-white pb-3 shadow-2xl rounded">Employee Details</div>
+				</div>
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+@endsection
