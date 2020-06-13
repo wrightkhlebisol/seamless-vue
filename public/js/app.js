@@ -1928,6 +1928,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     UserTable: _UserTable_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      showCreate: false
+    };
+  },
+  methods: {
+    showCreateModal: function showCreateModal() {
+      this.showCreate = true;
+    }
   }
 });
 
@@ -2352,7 +2362,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      allUsers: []
+      allUsers: [],
+      showUpdate: false
     };
   },
   methods: {
@@ -2364,7 +2375,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"]();
     },
     updateUser: function updateUser(userId) {
-      alert(userId);
+      this.showUpdate = true;
       axios.put("/api/employee/".concat(userId)).then(function (data) {
         console.log(data);
       })["catch"]();
@@ -37929,7 +37940,20 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "pl-8 pr-12 w-2/3" },
-    [_vm._m(0), _vm._v(" "), _c("user-table")],
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("user-table", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showCreate,
+            expression: "showCreate"
+          }
+        ]
+      })
+    ],
     1
   )
 }
@@ -38621,7 +38645,16 @@ var render = function() {
         0
       ),
       _vm._v(" "),
-      _c("update-user", { attrs: { userUpdate: "" } })
+      _c("update-user", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showUpdate,
+            expression: "showUpdate"
+          }
+        ]
+      })
     ],
     1
   )

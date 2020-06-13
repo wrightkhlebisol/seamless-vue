@@ -64,7 +64,7 @@
             </tr>
         </tbody>
 
-        <update-user userUpdate></update-user>
+        <update-user v-show="showUpdate"></update-user>
     </table>
 </template>
 
@@ -72,7 +72,8 @@
 export default {
     data() {
         return {
-            allUsers: []
+            allUsers: [],
+            showUpdate: false
         };
     },
 
@@ -86,7 +87,7 @@ export default {
                 .catch();
         },
         updateUser(userId) {
-            alert(userId);
+            this.showUpdate = true;
             axios
                 .put(`/api/employee/${userId}`)
                 .then(data => {

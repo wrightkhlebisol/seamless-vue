@@ -9,7 +9,7 @@
             </button>
         </div>
 
-        <user-table></user-table>
+        <user-table v-show="showCreate"></user-table>
     </div>
 </template>
 
@@ -19,6 +19,16 @@ import UserTable from "./UserTable.vue";
 export default {
     components: {
         UserTable
+    },
+    data() {
+        return {
+            showCreate: false
+        };
+    },
+    methods: {
+        showCreateModal() {
+            this.showCreate = true;
+        }
     }
 };
 </script>
