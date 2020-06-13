@@ -9,10 +9,10 @@
             @click="closeModal"
         >
             <div>X Close Form</div>
-            <div>{{ createStatus }}</div>
+            <div>{{ updateStatus }}</div>
         </div>
         <form
-            @submit="createUser()"
+            @submit="updateUser()"
             class="bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4"
         >
             <div class="mb-4">
@@ -88,12 +88,12 @@
             <button
                 class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
                 type="button"
-                @click="createUser()"
+                @click="updateUser()"
             >
-                {{ createStatus }}
+                {{ updateStatus }}
             </button>
             <!-- <div>
-                <input type="submit" value="Create Employee" />
+                <input type="submit" value="Update Employee" />
             </div> -->
         </form>
     </div>
@@ -109,7 +109,7 @@ export default {
             employment_type: "",
             employment_status: "",
             showModal: true,
-            createStatus: "Create Employee"
+            updateStatus: "Update Employee"
         };
     },
 
@@ -118,8 +118,8 @@ export default {
     },
 
     methods: {
-        createUser() {
-            this.createStatus = ". . . Creating employee";
+        updateUser() {
+            this.updateStatus = ". . . Updating employee";
             axios
                 .post("api/employee", {
                     employee_name: this.employee_name,
@@ -129,12 +129,12 @@ export default {
                     employment_status: this.employment_status
                 })
                 .then(res => {
-                    this.createStatus = "Employee Created !!!";
+                    this.updateStatus = "Employee Updated !!!";
                     res.data;
                 })
                 .catch(err => {
-                    this.createStatus =
-                        "Employee Creation Failed, Check the form !!!";
+                    this.updateStatus =
+                        "Employee Update Failed, Check the form !!!";
                     console.log(err);
                 });
         },

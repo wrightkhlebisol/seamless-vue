@@ -23,11 +23,14 @@
 </head>
 <body>
     
-    <div id="app" class="bg-gray-300 py-12 font-sans z-40 bg-no-repeat bg-right-top" style="background-image: url('{{ asset('img/internia-logo-close.png')}}');">
+    <div id="app" class="bg-gray-300 py-12 font-sans z-40 bg-no-repeat bg-right-top" 
+    style="
+    background-image: url('{{ asset('img/internia-logo-close.png')}}'), url('{{ asset('img/dot3.png')}}'), url('{{ asset('img/dot3.png')}}');
+  background-position: right top, left top, left bottom;
+  background-repeat: no-repeat, no-repeat, no-repeat; 
+    background-size: 750px 750px, 209px 250px, 450px 250px;">
         
             @yield('content')
-            <img src="{{ asset('img/dot3.png') }}" alt="dot-images-top" class="inline z-20 object-none object-left-top">
-        <img src="{{ asset('img/dot3.png') }}" alt="dot-images-top" class="inline z-20 object-none object-left-bottom">
     </div>
 </body>
 </html>

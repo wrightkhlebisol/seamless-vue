@@ -14,5 +14,11 @@
 </template>
 
 <script>
-export default {};
+import UserTable from "./UserTable.vue";
+
+export default {
+    components: {
+        UserTable
+    }
+};
 </script>

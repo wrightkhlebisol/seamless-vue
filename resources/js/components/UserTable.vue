@@ -63,6 +63,8 @@
                 </td>
             </tr>
         </tbody>
+
+        <update-user userUpdate></update-user>
     </table>
 </template>
 
@@ -83,7 +85,6 @@ export default {
                 })
                 .catch();
         },
-        createUser() {},
         updateUser(userId) {
             alert(userId);
             axios

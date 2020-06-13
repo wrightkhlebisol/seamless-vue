@@ -24,6 +24,7 @@ Vue.config.devtools = true;
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('user-table', require('./components/UserTable.vue').default);
 Vue.component('user-create', require('./components/UserCreate.vue').default);
+Vue.component('update-user', require('./components/UpdateUser.vue').default);
 Vue.component('employee-manager', require('./components/EmployeeManager.vue').default);
 
 /**
