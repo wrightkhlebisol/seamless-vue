@@ -1985,19 +1985,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2253,32 +2240,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -37951,7 +37912,7 @@ var render = function() {
             attrs: { type: "submit" },
             on: { click: _vm.showCreateModal }
           },
-          [_vm._v("\n            add employee\n        ")]
+          [_vm._v("add employee")]
         )
       ]),
       _vm._v(" "),
@@ -37985,11 +37946,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "font-bold text-gray-500" }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(users.employee_role) +
-                      "\n                    "
-                  )
+                  _vm._v(_vm._s(users.employee_role))
                 ])
               ]),
               _vm._v(" "),
@@ -37999,11 +37956,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "font-bold text-gray-500" }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(users.employment_type) +
-                      "\n                    "
-                  )
+                  _vm._v(_vm._s(users.employment_type))
                 ])
               ]),
               _vm._v(" "),
@@ -38013,11 +37966,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "font-bold text-gray-500" }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(users.created_at) +
-                      "\n                    "
-                  )
+                  _vm._v(_vm._s(users.created_at))
                 ])
               ]),
               _vm._v(" "),
@@ -38025,7 +37974,7 @@ var render = function() {
                 _c(
                   "span",
                   {
-                    staticClass: "mx-5 mt-4",
+                    staticClass: "mx-5 mt-4 cursor-pointer",
                     on: {
                       click: function($event) {
                         return _vm.getOneUser(users.id)
@@ -38038,7 +37987,7 @@ var render = function() {
                 _c(
                   "span",
                   {
-                    staticClass: "mt-4",
+                    staticClass: "mt-4 cursor-pointer",
                     on: {
                       click: function($event) {
                         return _vm.deleteUser(users.id)
@@ -38102,17 +38051,17 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n                    EMPLOYEE "),
+          _vm._v("\n          EMPLOYEE\n          "),
           _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n                    SALARY "),
+          _vm._v("\n          SALARY\n          "),
           _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n                    STATUS "),
+          _vm._v("\n          STATUS\n          "),
           _c("i", { staticClass: "fas fa-long-arrow-alt-down" })
         ]),
         _vm._v(" "),
@@ -38472,7 +38421,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex flex-row justify-around py-10 font-bold text-white text-2xl",
+            "flex flex-row justify-around py-10 font-bold text-white text-2xl cursor-pointer",
           on: { click: _vm.closeModal }
         },
         [
@@ -38485,7 +38434,7 @@ var render = function() {
       _c(
         "form",
         {
-          staticClass: "bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4",
+          staticClass: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4",
           on: {
             submit: function($event) {
               return _vm.createUser()
@@ -38500,7 +38449,7 @@ var render = function() {
                 staticClass: "block text-gray-700 text-sm font-bold mb-2",
                 attrs: { for: "employee_name" }
               },
-              [_vm._v("\n                Name\n            ")]
+              [_vm._v("Name")]
             ),
             _vm._v(" "),
             _c("input", {
@@ -38534,7 +38483,7 @@ var render = function() {
                 staticClass: "block text-gray-700 text-sm font-bold mb-2",
                 attrs: { for: "employee_role" }
               },
-              [_vm._v("\n                Role\n            ")]
+              [_vm._v("Role")]
             ),
             _vm._v(" "),
             _c("input", {
@@ -38568,7 +38517,7 @@ var render = function() {
                 staticClass: "block text-gray-700 text-sm font-bold mb-2",
                 attrs: { for: "employee_salary" }
               },
-              [_vm._v("\n                Salary\n            ")]
+              [_vm._v("Salary")]
             ),
             _vm._v(" "),
             _c("input", {
@@ -38602,7 +38551,7 @@ var render = function() {
                 staticClass: "block text-gray-700 text-sm font-bold mb-2",
                 attrs: { for: "employment_type" }
               },
-              [_vm._v("\n                Employment Type\n            ")]
+              [_vm._v("Employment Type")]
             ),
             _vm._v(" "),
             _c("input", {
@@ -38636,7 +38585,7 @@ var render = function() {
                 staticClass: "block text-gray-700 text-sm font-bold mb-2",
                 attrs: { for: "employment_status" }
               },
-              [_vm._v("\n                Employment Status\n            ")]
+              [_vm._v("Employment Status")]
             ),
             _vm._v(" "),
             _c("input", {
@@ -38675,7 +38624,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("\n            " + _vm._s(_vm.createStatus) + "\n        ")]
+            [_vm._v(_vm._s(_vm.createStatus))]
           )
         ]
       )
@@ -51232,8 +51181,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\seamless-vue\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\seamless-vue\resources\css\main.css */"./resources/css/main.css");
+__webpack_require__(/*! /Users/mac/Desktop/caleb/seamless-vue/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/mac/Desktop/caleb/seamless-vue/resources/css/main.css */"./resources/css/main.css");
 
 
 /***/ })
