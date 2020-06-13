@@ -2026,6 +2026,7 @@ __webpack_require__.r(__webpack_exports__);
     getOneUser: function getOneUser(userId) {
       var _this2 = this;
 
+      alert(userId);
       this.showUpdate = !this.showUpdate;
       axios.put("/api/employee/".concat(userId)).then(function (data) {
         _this2.employeeId = userId;
@@ -2201,7 +2202,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      employeeId: this.name,
+      employeeId: this.propUserId,
       employee_name: this.name,
       employee_role: this.role,
       employee_salary: this.salary,
@@ -37973,7 +37974,7 @@ var render = function() {
                     "inline rounded-full h-12 w-12 items-center justify-center float-right",
                   attrs: {
                     alt: users.employee_name,
-                    src: "https://i.pravatar.cc/60?u={{}}"
+                    src: "https://i.pravatar.cc/60?u="
                   }
                 })
               ]),

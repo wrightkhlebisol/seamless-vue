@@ -81,4 +81,8 @@ class EmployeeController extends Controller
             return response()->json("Employee $employee->id not found", 404);
         }
     }
+
+    public function getAvatarAttribute(Employee $employee){
+        return "https://i.pravatar.cc/40?u=" . $employee->id;
+    }
 }

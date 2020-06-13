@@ -42,7 +42,7 @@
                         />
                         <img
                             :alt="users.employee_name"
-                            src="https://i.pravatar.cc/60?u={{}}"
+                            src="https://i.pravatar.cc/60?u="
                             class="inline rounded-full h-12 w-12 items-center justify-center float-right"
                         />
                     </td>
@@ -116,6 +116,7 @@ export default {
                 .catch();
         },
         getOneUser(userId) {
+            alert(userId);
             this.showUpdate = !this.showUpdate;
             axios
                 .put(`/api/employee/${userId}`)

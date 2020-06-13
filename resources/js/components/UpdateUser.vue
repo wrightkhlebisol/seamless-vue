@@ -106,7 +106,7 @@
 export default {
     data() {
         return {
-            employeeId: this.name,
+            employeeId: this.propUserId,
             employee_name: this.name,
             employee_role: this.role,
             employee_salary: this.salary,
