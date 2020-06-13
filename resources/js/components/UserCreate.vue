@@ -2,7 +2,6 @@
     <!-- class="flex flex-col shadow-2xl rounded-lg w-100 mx-auto" -->
     <div
         class="w-full max-w-lg mx-auto z-40 absolute inset-0 bg-gray-500 my-48 rounded-t-lg"
-        v-show="showModal"
     >
         <div
             class="flex flex-row justify-around py-10 font-bold text-white text-2xl"
@@ -130,6 +129,7 @@ export default {
                 })
                 .then(res => {
                     this.createStatus = "Employee Created !!!";
+                    setTimeout(location.reload(), 4000);
                     res.data;
                 })
                 .catch(err => {

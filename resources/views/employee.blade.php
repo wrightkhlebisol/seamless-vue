@@ -55,6 +55,4 @@
 			<employee-manager></employee-manager>
 		</div>
 	</div>
-
-	<user-create></user-create>
 @endsection

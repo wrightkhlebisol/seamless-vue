@@ -1908,7 +1908,6 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserTable_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserTable.vue */ "./resources/js/components/UserTable.vue");
 //
 //
 //
@@ -1924,20 +1923,109 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    UserTable: _UserTable_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
   data: function data() {
     return {
-      showCreate: false
+      showCreate: false,
+      allUsers: [],
+      showUpdate: false
     };
   },
   methods: {
     showCreateModal: function showCreateModal() {
-      this.showCreate = true;
+      this.showCreate = !this.showCreate;
+    },
+    getAllUsers: function getAllUsers() {
+      var _this = this;
+
+      axios.get("/api/employee").then(function (data) {
+        _this.allUsers = data.data;
+      })["catch"]();
+    },
+    updateUser: function updateUser(userId) {
+      this.showUpdate = !this.showUpdate;
+      axios.put("/api/employee/".concat(userId)).then(function (data) {
+        console.log(data);
+      })["catch"]();
+    },
+    deleteUser: function deleteUser(userId) {
+      if (confirm("Are you sure you want to delete employee ".concat(userId))) {
+        axios["delete"]("/api/employee/".concat(userId)).then(function (data) {
+          location.reload();
+          console.log(data);
+        })["catch"]();
+      }
     }
+  },
+  mounted: function mounted() {
+    this.getAllUsers();
   }
 });
 
@@ -2102,21 +2190,29 @@ __webpack_require__.r(__webpack_exports__);
     display: true
   },
   methods: {
-    updateUser: function updateUser() {
+    getOneUser: function getOneUser(userId) {
       var _this = this;
 
+      axios.get("/api/employee/".concat(userId)).then(function (data) {
+        _this.employee_name = data.data.employee_name, _this.employee_role = data.data.employee_role, _this.employee_salary = data.data.employee_salary, _this.employment_type = data.data.employment_type, _this.employment_status = data.data.employment_status;
+      })["catch"]();
+    },
+    updateUser: function updateUser() {
+      var _this2 = this;
+
       this.updateStatus = ". . . Updating employee";
-      axios.post("api/employee", {
+      axios.put("api/employee", {
         employee_name: this.employee_name,
         employee_role: this.employee_role,
         employee_salary: this.employee_salary,
         employment_type: this.employment_type,
         employment_status: this.employment_status
       }).then(function (res) {
-        _this.updateStatus = "Employee Updated !!!";
+        _this2.updateStatus = "Employee Updated !!!";
+        setTimeout(location.reload(), 4000);
         res.data;
       })["catch"](function (err) {
-        _this.updateStatus = "Employee Update Failed, Check the form !!!";
+        _this2.updateStatus = "Employee Update Failed, Check the form !!!";
         console.log(err);
       });
     },
@@ -2137,7 +2233,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2266,6 +2361,7 @@ __webpack_require__.r(__webpack_exports__);
         employment_status: this.employment_status
       }).then(function (res) {
         _this.createStatus = "Employee Created !!!";
+        setTimeout(location.reload(), 4000);
         res.data;
       })["catch"](function (err) {
         _this.createStatus = "Employee Creation Failed, Check the form !!!";
@@ -2275,120 +2371,6 @@ __webpack_require__.r(__webpack_exports__);
     closeModal: function closeModal() {
       this.showModal = false;
     }
-  }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserTable.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserTable.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      allUsers: [],
-      showUpdate: false
-    };
-  },
-  methods: {
-    getAllUsers: function getAllUsers() {
-      var _this = this;
-
-      axios.get("/api/employee").then(function (data) {
-        _this.allUsers = data.data;
-      })["catch"]();
-    },
-    updateUser: function updateUser(userId) {
-      this.showUpdate = true;
-      axios.put("/api/employee/".concat(userId)).then(function (data) {
-        console.log(data);
-      })["catch"]();
-    },
-    deleteUser: function deleteUser(userId) {
-      alert(userId);
-      axios["delete"]("/api/employee/".concat(userId)).then(function (data) {
-        console.log(data);
-      })["catch"]();
-    }
-  },
-  mounted: function mounted() {
-    this.getAllUsers();
   }
 });
 
@@ -37941,9 +37923,129 @@ var render = function() {
     "div",
     { staticClass: "pl-8 pr-12 w-2/3" },
     [
-      _vm._m(0),
+      _c("div", { staticClass: "flex justify-end" }, [
+        _c(
+          "button",
+          {
+            staticClass: "br-5 py-2 px-4 bg-green-500 rounded-full my-5",
+            attrs: { type: "submit" },
+            on: { click: _vm.showCreateModal }
+          },
+          [_vm._v("\n            add employee\n        ")]
+        )
+      ]),
       _vm._v(" "),
-      _c("user-table", {
+      _c("table", { staticClass: "border-separate border-gray-500 -mt-10px" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.allUsers, function(users) {
+            return _c("tr", { key: users.id, staticClass: "bg-white" }, [
+              _c("td", { staticClass: "px-4 py-2" }, [
+                _c("input", {
+                  staticClass: "h-5 w-5 mt-3",
+                  attrs: { type: "checkbox" },
+                  domProps: { value: users.id }
+                }),
+                _vm._v(" "),
+                _c("img", {
+                  staticClass:
+                    "inline rounded-full h-12 w-12 items-center justify-center float-right",
+                  attrs: {
+                    alt: users.employee_name,
+                    src: "https://i.pravatar.cc/60?u={{}}"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "px-4 py-2" }, [
+                _c("p", { staticClass: "font-bold" }, [
+                  _vm._v(_vm._s(users.employee_name))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-bold text-gray-500" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(users.employee_role) +
+                      "\n                    "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "px-4 py-2" }, [
+                _c("p", { staticClass: "font-bold" }, [
+                  _vm._v(_vm._s(users.employee_salary))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-bold text-gray-500" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(users.employment_type) +
+                      "\n                    "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "px-4 py-2" }, [
+                _c("p", { staticClass: "font-bold" }, [
+                  _vm._v(_vm._s(users.employment_status))
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-bold text-gray-500" }, [
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(users.created_at) +
+                      "\n                    "
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "px-4 py-2 text-2xl text-gray-500" }, [
+                _c(
+                  "span",
+                  {
+                    staticClass: "mx-5 mt-4",
+                    on: {
+                      click: function($event) {
+                        return _vm.updateUser(users.id)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-pencil-alt" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "mt-4",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteUser(users.id)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "far fa-trash-alt" })]
+                )
+              ])
+            ])
+          }),
+          0
+        )
+      ]),
+      _vm._v(" "),
+      _c("update-user", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.showUpdate,
+            expression: "showUpdate"
+          }
+        ]
+      }),
+      _vm._v(" "),
+      _c("user-create", {
         directives: [
           {
             name: "show",
@@ -37962,15 +38064,32 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex justify-end" }, [
-      _c(
-        "button",
-        {
-          staticClass: "br-5 py-2 px-4 bg-green-500 rounded-full my-5",
-          attrs: { type: "submit" }
-        },
-        [_vm._v("\n            add employee\n        ")]
-      )
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
+          _c("input", {
+            staticClass: "float-left h-5 w-5",
+            attrs: { type: "checkbox", value: "all" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
+          _vm._v("\n                    EMPLOYEE "),
+          _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
+          _vm._v("\n                    SALARY "),
+          _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
+          _vm._v("\n                    STATUS "),
+          _c("i", { staticClass: "fas fa-long-arrow-alt-down" })
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("MANAGE")])
+      ])
     ])
   }
 ]
@@ -38296,14 +38415,6 @@ var render = function() {
   return _c(
     "div",
     {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.showModal,
-          expression: "showModal"
-        }
-      ],
       staticClass:
         "w-full max-w-lg mx-auto z-40 absolute inset-0 bg-gray-500 my-48 rounded-t-lg"
     },
@@ -38523,176 +38634,6 @@ var render = function() {
   )
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserTable.vue?vue&type=template&id=2c449768&":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/UserTable.vue?vue&type=template&id=2c449768& ***!
-  \************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "table",
-    { staticClass: "border-separate border-gray-500 -mt-10px" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.allUsers, function(users) {
-          return _c("tr", { key: users.id, staticClass: "bg-white" }, [
-            _c("td", { staticClass: "px-4 py-2" }, [
-              _c("input", {
-                staticClass: "h-5 w-5 mt-3",
-                attrs: { type: "checkbox" },
-                domProps: { value: users.id }
-              }),
-              _vm._v(" "),
-              _c("img", {
-                staticClass:
-                  "inline rounded-full h-12 w-12 items-center justify-center float-right",
-                attrs: {
-                  alt: users.employee_name,
-                  src: "https://i.pravatar.cc/60?u={{}}"
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "px-4 py-2" }, [
-              _c("p", { staticClass: "font-bold" }, [
-                _vm._v(_vm._s(users.employee_name))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-bold text-gray-500" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(users.employee_role) +
-                    "\n                "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "px-4 py-2" }, [
-              _c("p", { staticClass: "font-bold" }, [
-                _vm._v(_vm._s(users.employee_salary))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-bold text-gray-500" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(users.employment_type) +
-                    "\n                "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "px-4 py-2" }, [
-              _c("p", { staticClass: "font-bold" }, [
-                _vm._v(_vm._s(users.employment_status))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-bold text-gray-500" }, [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s(users.created_at) +
-                    "\n                "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", { staticClass: "px-4 py-2 text-2xl text-gray-500" }, [
-              _c(
-                "span",
-                {
-                  staticClass: "mx-5 mt-4",
-                  on: {
-                    click: function($event) {
-                      return _vm.updateUser(users.id)
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-pencil-alt" })]
-              ),
-              _vm._v(" "),
-              _c(
-                "span",
-                {
-                  staticClass: "mt-4",
-                  on: {
-                    click: function($event) {
-                      return _vm.deleteUser(users.id)
-                    }
-                  }
-                },
-                [_c("i", { staticClass: "far fa-trash-alt" })]
-              )
-            ])
-          ])
-        }),
-        0
-      ),
-      _vm._v(" "),
-      _c("update-user", {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.showUpdate,
-            expression: "showUpdate"
-          }
-        ]
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _c("input", {
-            staticClass: "float-left h-5 w-5",
-            attrs: { type: "checkbox", value: "all" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n                EMPLOYEE "),
-          _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n                SALARY "),
-          _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n                STATUS "),
-          _c("i", { staticClass: "fas fa-long-arrow-alt-down" })
-        ]),
-        _vm._v(" "),
-        _c("th", { staticClass: "w-1/5 px-4 py-2" }, [_vm._v("MANAGE")])
-      ])
-    ])
-  }
-]
 render._withStripped = true
 
 
@@ -50899,7 +50840,6 @@ Vue.config.devtools = true;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
-Vue.component('user-table', __webpack_require__(/*! ./components/UserTable.vue */ "./resources/js/components/UserTable.vue")["default"]);
 Vue.component('user-create', __webpack_require__(/*! ./components/UserCreate.vue */ "./resources/js/components/UserCreate.vue")["default"]);
 Vue.component('update-user', __webpack_require__(/*! ./components/UpdateUser.vue */ "./resources/js/components/UpdateUser.vue")["default"]);
 Vue.component('employee-manager', __webpack_require__(/*! ./components/EmployeeManager.vue */ "./resources/js/components/EmployeeManager.vue")["default"]);
@@ -51231,75 +51171,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserCreate_vue_vue_type_template_id_0a3735d2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserCreate_vue_vue_type_template_id_0a3735d2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/UserTable.vue":
-/*!***********************************************!*\
-  !*** ./resources/js/components/UserTable.vue ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _UserTable_vue_vue_type_template_id_2c449768___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserTable.vue?vue&type=template&id=2c449768& */ "./resources/js/components/UserTable.vue?vue&type=template&id=2c449768&");
-/* harmony import */ var _UserTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserTable.vue?vue&type=script&lang=js& */ "./resources/js/components/UserTable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _UserTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _UserTable_vue_vue_type_template_id_2c449768___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _UserTable_vue_vue_type_template_id_2c449768___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/UserTable.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/UserTable.vue?vue&type=script&lang=js&":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/UserTable.vue?vue&type=script&lang=js& ***!
-  \************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./UserTable.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserTable.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_UserTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/UserTable.vue?vue&type=template&id=2c449768&":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/UserTable.vue?vue&type=template&id=2c449768& ***!
-  \******************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserTable_vue_vue_type_template_id_2c449768___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./UserTable.vue?vue&type=template&id=2c449768& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/UserTable.vue?vue&type=template&id=2c449768&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserTable_vue_vue_type_template_id_2c449768___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserTable_vue_vue_type_template_id_2c449768___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

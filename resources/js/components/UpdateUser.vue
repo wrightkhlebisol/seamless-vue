@@ -118,10 +118,22 @@ export default {
     },
 
     methods: {
+        getOneUser(userId) {
+            axios
+                .get(`/api/employee/${userId}`)
+                .then(data => {
+                    (this.employee_name = data.data.employee_name),
+                        (this.employee_role = data.data.employee_role),
+                        (this.employee_salary = data.data.employee_salary),
+                        (this.employment_type = data.data.employment_type),
+                        (this.employment_status = data.data.employment_status);
+                })
+                .catch();
+        },
         updateUser() {
             this.updateStatus = ". . . Updating employee";
             axios
-                .post("api/employee", {
+                .put("api/employee", {
                     employee_name: this.employee_name,
                     employee_role: this.employee_role,
                     employee_salary: this.employee_salary,
@@ -130,6 +142,7 @@ export default {
                 })
                 .then(res => {
                     this.updateStatus = "Employee Updated !!!";
+                    setTimeout(location.reload(), 4000);
                     res.data;
                 })
                 .catch(err => {
