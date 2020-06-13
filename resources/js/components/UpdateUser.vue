@@ -15,6 +15,7 @@
             @submit="updateUser()"
             class="bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4"
         >
+            <input type="hidden" v-model="employeeId" />
             <div class="mb-4">
                 <label
                     class="block text-gray-700 text-sm font-bold mb-2"
@@ -23,9 +24,9 @@
                     Name
                 </label>
                 <input
-                    v-model="employee_name"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
+                    v-model="employee_name"
                     placeholder="Name"
                 />
             </div>
@@ -37,9 +38,11 @@
                     Role
                 </label>
                 <input
-                    v-model="employee_role"
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow appearance-none
+                border rounded w-full py-2 px-3 text-gray-700 leading-tight
+                focus:outline-none focus:shadow-outline"
                     type="text"
+                    v-model="employee_role"
                     placeholder="Role"
                 />
             </div>
@@ -51,9 +54,9 @@
                     Salary
                 </label>
                 <input
-                    v-model="employee_salary"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
+                    v-model="employee_salary"
                     placeholder="Salary"
                 />
             </div>
@@ -65,9 +68,9 @@
                     Employment Type
                 </label>
                 <input
-                    v-model="employment_type"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
+                    v-model="employment_type"
                     placeholder="Employment Type"
                 />
             </div>
@@ -79,9 +82,9 @@
                     Employment Status
                 </label>
                 <input
-                    v-model="employment_status"
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
+                    v-model="employment_status"
                     placeholder="Employment Status"
                 />
             </div>
@@ -103,37 +106,24 @@
 export default {
     data() {
         return {
-            employee_name: "",
-            employee_role: "",
-            employee_salary: "",
-            employment_type: "",
-            employment_status: "",
+            employeeId: this.name,
+            employee_name: this.name,
+            employee_role: this.role,
+            employee_salary: this.salary,
+            employment_type: this.type,
+            employment_status: this.status,
             showModal: true,
             updateStatus: "Update Employee"
         };
     },
 
-    props: {
-        display: true
-    },
+    props: ["propUserId", "name", "role", "salary", "type", "status"],
 
     methods: {
-        getOneUser(userId) {
-            axios
-                .get(`/api/employee/${userId}`)
-                .then(data => {
-                    (this.employee_name = data.data.employee_name),
-                        (this.employee_role = data.data.employee_role),
-                        (this.employee_salary = data.data.employee_salary),
-                        (this.employment_type = data.data.employment_type),
-                        (this.employment_status = data.data.employment_status);
-                })
-                .catch();
-        },
         updateUser() {
             this.updateStatus = ". . . Updating employee";
             axios
-                .put("api/employee", {
+                .put(`api/employee/${this.employeeId}`, {
                     employee_name: this.employee_name,
                     employee_role: this.employee_role,
                     employee_salary: this.employee_salary,
@@ -153,6 +143,9 @@ export default {
         },
         closeModal() {
             this.showModal = false;
+        },
+        mounted() {
+            this.getOneUser();
         }
     }
 };

@@ -65,7 +65,7 @@
                         </p>
                     </td>
                     <td class="px-4 py-2 text-2xl text-gray-500">
-                        <span class="mx-5 mt-4" @click="updateUser(users.id)">
+                        <span class="mx-5 mt-4" @click="getOneUser(users.id)">
                             <i class="fas fa-pencil-alt"></i>
                         </span>
                         <span class="mt-4" @click="deleteUser(users.id)">
@@ -75,7 +75,15 @@
                 </tr>
             </tbody>
         </table>
-        <update-user v-show="showUpdate"></update-user>
+        <update-user
+            v-show="showUpdate"
+            :propUserId="employeeId"
+            :name="employee_name"
+            :role="employee_role"
+            :salary="employee_salary"
+            :type="employment_type"
+            :status="employment_status"
+        ></update-user>
         <user-create v-show="showCreate"></user-create>
     </div>
 </template>
@@ -86,7 +94,13 @@ export default {
         return {
             showCreate: false,
             allUsers: [],
-            showUpdate: false
+            showUpdate: false,
+            employeeId: 0,
+            employee_name: "",
+            employee_role: "",
+            employee_salary: "",
+            employment_type: "",
+            employment_status: ""
         };
     },
     methods: {
@@ -101,12 +115,17 @@ export default {
                 })
                 .catch();
         },
-        updateUser(userId) {
+        getOneUser(userId) {
             this.showUpdate = !this.showUpdate;
             axios
                 .put(`/api/employee/${userId}`)
                 .then(data => {
-                    console.log(data);
+                    this.employeeId = userId;
+                    this.employee_name = data.data.employee_name;
+                    this.employee_role = data.data.employee_role;
+                    this.employee_salary = data.data.employee_salary;
+                    this.employment_type = data.data.employment_type;
+                    this.employment_status = data.data.employment_status;
                 })
                 .catch();
         },

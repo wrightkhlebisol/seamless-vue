@@ -1990,12 +1990,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       showCreate: false,
       allUsers: [],
-      showUpdate: false
+      showUpdate: false,
+      employeeId: 0,
+      employee_name: "",
+      employee_role: "",
+      employee_salary: "",
+      employment_type: "",
+      employment_status: ""
     };
   },
   methods: {
@@ -2009,10 +2023,17 @@ __webpack_require__.r(__webpack_exports__);
         _this.allUsers = data.data;
       })["catch"]();
     },
-    updateUser: function updateUser(userId) {
+    getOneUser: function getOneUser(userId) {
+      var _this2 = this;
+
       this.showUpdate = !this.showUpdate;
       axios.put("/api/employee/".concat(userId)).then(function (data) {
-        console.log(data);
+        _this2.employeeId = userId;
+        _this2.employee_name = data.data.employee_name;
+        _this2.employee_role = data.data.employee_role;
+        _this2.employee_salary = data.data.employee_salary;
+        _this2.employment_type = data.data.employment_type;
+        _this2.employment_status = data.data.employment_status;
       })["catch"]();
     },
     deleteUser: function deleteUser(userId) {
@@ -2174,50 +2195,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      employee_name: "",
-      employee_role: "",
-      employee_salary: "",
-      employment_type: "",
-      employment_status: "",
+      employeeId: this.name,
+      employee_name: this.name,
+      employee_role: this.role,
+      employee_salary: this.salary,
+      employment_type: this.type,
+      employment_status: this.status,
       showModal: true,
       updateStatus: "Update Employee"
     };
   },
-  props: {
-    display: true
-  },
+  props: ["propUserId", "name", "role", "salary", "type", "status"],
   methods: {
-    getOneUser: function getOneUser(userId) {
+    updateUser: function updateUser() {
       var _this = this;
 
-      axios.get("/api/employee/".concat(userId)).then(function (data) {
-        _this.employee_name = data.data.employee_name, _this.employee_role = data.data.employee_role, _this.employee_salary = data.data.employee_salary, _this.employment_type = data.data.employment_type, _this.employment_status = data.data.employment_status;
-      })["catch"]();
-    },
-    updateUser: function updateUser() {
-      var _this2 = this;
-
       this.updateStatus = ". . . Updating employee";
-      axios.put("api/employee", {
+      axios.put("api/employee/".concat(this.employeeId), {
         employee_name: this.employee_name,
         employee_role: this.employee_role,
         employee_salary: this.employee_salary,
         employment_type: this.employment_type,
         employment_status: this.employment_status
       }).then(function (res) {
-        _this2.updateStatus = "Employee Updated !!!";
+        _this.updateStatus = "Employee Updated !!!";
         setTimeout(location.reload(), 4000);
         res.data;
       })["catch"](function (err) {
-        _this2.updateStatus = "Employee Update Failed, Check the form !!!";
+        _this.updateStatus = "Employee Update Failed, Check the form !!!";
         console.log(err);
       });
     },
     closeModal: function closeModal() {
       this.showModal = false;
+    },
+    mounted: function mounted() {
+      this.getOneUser();
     }
   }
 });
@@ -38008,7 +38027,7 @@ var render = function() {
                     staticClass: "mx-5 mt-4",
                     on: {
                       click: function($event) {
-                        return _vm.updateUser(users.id)
+                        return _vm.getOneUser(users.id)
                       }
                     }
                   },
@@ -38042,7 +38061,15 @@ var render = function() {
             value: _vm.showUpdate,
             expression: "showUpdate"
           }
-        ]
+        ],
+        attrs: {
+          propUserId: _vm.employeeId,
+          name: _vm.employee_name,
+          role: _vm.employee_role,
+          salary: _vm.employee_salary,
+          type: _vm.employment_type,
+          status: _vm.employment_status
+        }
       }),
       _vm._v(" "),
       _c("user-create", {
@@ -38201,6 +38228,27 @@ var render = function() {
           }
         },
         [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.employeeId,
+                expression: "employeeId"
+              }
+            ],
+            attrs: { type: "hidden" },
+            domProps: { value: _vm.employeeId },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.employeeId = $event.target.value
+              }
+            }
+          }),
+          _vm._v(" "),
           _c("div", { staticClass: "mb-4" }, [
             _c(
               "label",
@@ -38255,7 +38303,7 @@ var render = function() {
                 }
               ],
               staticClass:
-                "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                "shadow appearance-none\n            border rounded w-full py-2 px-3 text-gray-700 leading-tight\n            focus:outline-none focus:shadow-outline",
               attrs: { type: "text", placeholder: "Role" },
               domProps: { value: _vm.employee_role },
               on: {
