@@ -23,6 +23,8 @@ Vue.config.devtools = true;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('user-table', require('./components/UserTable.vue').default);
+Vue.component('user-create', require('./components/UserCreate.vue').default);
+Vue.component('employee-manager', require('./components/EmployeeManager.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
