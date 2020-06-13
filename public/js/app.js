@@ -1985,12 +1985,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       showCreate: false,
-      allUsers: [],
       showUpdate: false,
+      allUsers: [],
       employeeId: 0,
       employee_name: "",
       employee_role: "",
@@ -2003,6 +2029,9 @@ __webpack_require__.r(__webpack_exports__);
     showCreateModal: function showCreateModal() {
       this.showCreate = !this.showCreate;
     },
+    showUpdateModal: function showUpdateModal() {
+      this.showUpdate = !this.showUpdate;
+    },
     getAllUsers: function getAllUsers() {
       var _this = this;
 
@@ -2013,7 +2042,6 @@ __webpack_require__.r(__webpack_exports__);
     getOneUser: function getOneUser(userId) {
       var _this2 = this;
 
-      alert(userId);
       this.showUpdate = !this.showUpdate;
       axios.put("/api/employee/".concat(userId)).then(function (data) {
         _this2.employeeId = userId;
@@ -2028,7 +2056,6 @@ __webpack_require__.r(__webpack_exports__);
       if (confirm("Are you sure you want to delete employee ".concat(userId))) {
         axios["delete"]("/api/employee/".concat(userId)).then(function (data) {
           location.reload();
-          console.log(data);
         })["catch"]();
       }
     }
@@ -2189,12 +2216,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      employeeId: this.propUserId,
-      employee_name: this.name,
-      employee_role: this.role,
-      employee_salary: this.salary,
-      employment_type: this.type,
-      employment_status: this.status,
+      // employeeId: this.propUserId,
+      // employee_name: this.name,
+      // employee_role: this.role,
+      // employee_salary: this.salary,
+      // employment_type: this.type,
+      // employment_status: this.status,
       showModal: true,
       updateStatus: "Update Employee"
     };
@@ -2205,19 +2232,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.updateStatus = ". . . Updating employee";
-      axios.put("api/employee/".concat(this.employeeId), {
-        employee_name: this.employee_name,
-        employee_role: this.employee_role,
-        employee_salary: this.employee_salary,
-        employment_type: this.employment_type,
-        employment_status: this.employment_status
+      axios.put("api/employee/".concat(this.propUserId), {
+        employee_name: this.name,
+        employee_role: this.role,
+        employee_salary: this.salary,
+        employment_type: this.type,
+        employment_status: this.status
       }).then(function (res) {
         _this.updateStatus = "Employee Updated !!!";
         setTimeout(location.reload(), 4000);
         res.data;
       })["catch"](function (err) {
         _this.updateStatus = "Employee Update Failed, Check the form !!!";
-        console.log(err);
       });
     },
     closeModal: function closeModal() {
@@ -2240,6 +2266,27 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2346,7 +2393,6 @@ __webpack_require__.r(__webpack_exports__);
         res.data;
       })["catch"](function (err) {
         _this.createStatus = "Employee Creation Failed, Check the form !!!";
-        console.log(err);
       });
     },
     closeModal: function closeModal() {
@@ -37912,7 +37958,7 @@ var render = function() {
             attrs: { type: "submit" },
             on: { click: _vm.showCreateModal }
           },
-          [_vm._v("add employee")]
+          [_vm._v("\n            add employee\n        ")]
         )
       ]),
       _vm._v(" "),
@@ -37935,7 +37981,7 @@ var render = function() {
                     "inline rounded-full h-12 w-12 items-center justify-center float-right",
                   attrs: {
                     alt: users.employee_name,
-                    src: "https://i.pravatar.cc/60?u="
+                    src: "https://i.pravatar.cc/60?u=" + users.id
                   }
                 })
               ]),
@@ -37946,7 +37992,11 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "font-bold text-gray-500" }, [
-                  _vm._v(_vm._s(users.employee_role))
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(users.employee_role) +
+                      "\n                    "
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -37956,7 +38006,11 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "font-bold text-gray-500" }, [
-                  _vm._v(_vm._s(users.employment_type))
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(users.employment_type) +
+                      "\n                    "
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -37966,7 +38020,11 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("p", { staticClass: "font-bold text-gray-500" }, [
-                  _vm._v(_vm._s(users.created_at))
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(users.created_at) +
+                      "\n                    "
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -38019,7 +38077,8 @@ var render = function() {
           salary: _vm.employee_salary,
           type: _vm.employment_type,
           status: _vm.employment_status
-        }
+        },
+        on: { closeForm: _vm.showUpdateModal }
       }),
       _vm._v(" "),
       _c("user-create", {
@@ -38030,7 +38089,8 @@ var render = function() {
             value: _vm.showCreate,
             expression: "showCreate"
           }
-        ]
+        ],
+        on: { closeForm: _vm.showCreateModal }
       })
     ],
     1
@@ -38051,17 +38111,17 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n          EMPLOYEE\n          "),
+          _vm._v("\n                    EMPLOYEE\n                    "),
           _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n          SALARY\n          "),
+          _vm._v("\n                    SALARY\n                    "),
           _c("i", { staticClass: "fas fa-long-arrow-alt-up" })
         ]),
         _vm._v(" "),
         _c("th", { staticClass: "w-1/5 px-4 py-2" }, [
-          _vm._v("\n          STATUS\n          "),
+          _vm._v("\n                    STATUS\n                    "),
           _c("i", { staticClass: "fas fa-long-arrow-alt-down" })
         ]),
         _vm._v(" "),
@@ -38157,11 +38217,21 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex flex-row justify-around py-10 font-bold text-white text-2xl",
+            "flex flex-row justify-around py-10 font-bold text-white text-2xl cursor-pointer",
           on: { click: _vm.closeModal }
         },
         [
-          _c("div", [_vm._v("X Close Form")]),
+          _c(
+            "div",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.$emit("closeForm")
+                }
+              }
+            },
+            [_vm._v("X Close Form")]
+          ),
           _vm._v(" "),
           _c("div", [_vm._v(_vm._s(_vm.updateStatus))])
         ]
@@ -38183,18 +38253,18 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.employeeId,
-                expression: "employeeId"
+                value: _vm.propUserId,
+                expression: "propUserId"
               }
             ],
             attrs: { type: "hidden" },
-            domProps: { value: _vm.employeeId },
+            domProps: { value: _vm.propUserId },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.employeeId = $event.target.value
+                _vm.propUserId = $event.target.value
               }
             }
           }),
@@ -38214,20 +38284,20 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.employee_name,
-                  expression: "employee_name"
+                  value: _vm.name,
+                  expression: "name"
                 }
               ],
               staticClass:
                 "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
               attrs: { type: "text", placeholder: "Name" },
-              domProps: { value: _vm.employee_name },
+              domProps: { value: _vm.name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.employee_name = $event.target.value
+                  _vm.name = $event.target.value
                 }
               }
             })
@@ -38248,20 +38318,20 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.employee_role,
-                  expression: "employee_role"
+                  value: _vm.role,
+                  expression: "role"
                 }
               ],
               staticClass:
                 "shadow appearance-none\n            border rounded w-full py-2 px-3 text-gray-700 leading-tight\n            focus:outline-none focus:shadow-outline",
               attrs: { type: "text", placeholder: "Role" },
-              domProps: { value: _vm.employee_role },
+              domProps: { value: _vm.role },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.employee_role = $event.target.value
+                  _vm.role = $event.target.value
                 }
               }
             })
@@ -38282,20 +38352,20 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.employee_salary,
-                  expression: "employee_salary"
+                  value: _vm.salary,
+                  expression: "salary"
                 }
               ],
               staticClass:
                 "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
               attrs: { type: "text", placeholder: "Salary" },
-              domProps: { value: _vm.employee_salary },
+              domProps: { value: _vm.salary },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.employee_salary = $event.target.value
+                  _vm.salary = $event.target.value
                 }
               }
             })
@@ -38316,20 +38386,20 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.employment_type,
-                  expression: "employment_type"
+                  value: _vm.type,
+                  expression: "type"
                 }
               ],
               staticClass:
                 "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
               attrs: { type: "text", placeholder: "Employment Type" },
-              domProps: { value: _vm.employment_type },
+              domProps: { value: _vm.type },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.employment_type = $event.target.value
+                  _vm.type = $event.target.value
                 }
               }
             })
@@ -38350,20 +38420,20 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.employment_status,
-                  expression: "employment_status"
+                  value: _vm.status,
+                  expression: "status"
                 }
               ],
               staticClass:
                 "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
               attrs: { type: "text", placeholder: "Employment Status" },
-              domProps: { value: _vm.employment_status },
+              domProps: { value: _vm.status },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.employment_status = $event.target.value
+                  _vm.status = $event.target.value
                 }
               }
             })
@@ -38425,7 +38495,17 @@ var render = function() {
           on: { click: _vm.closeModal }
         },
         [
-          _c("div", [_vm._v("X Close Form")]),
+          _c(
+            "div",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.$emit("closeForm")
+                }
+              }
+            },
+            [_vm._v("X Close Form")]
+          ),
           _vm._v(" "),
           _c("div", [_vm._v(_vm._s(_vm.createStatus))])
         ]
@@ -38624,7 +38704,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.createStatus))]
+            [_vm._v("\n            " + _vm._s(_vm.createStatus) + "\n        ")]
           )
         ]
       )
@@ -51181,8 +51261,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/mac/Desktop/caleb/seamless-vue/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/mac/Desktop/caleb/seamless-vue/resources/css/main.css */"./resources/css/main.css");
+__webpack_require__(/*! C:\laragon\www\seamless-vue\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\seamless-vue\resources\css\main.css */"./resources/css/main.css");
 
 
 /***/ })

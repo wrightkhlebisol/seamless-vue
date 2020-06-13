@@ -42,13 +42,13 @@
 
 					<h5 class="text-gray-500 text-xl mt-10">PROJECT</h5>
 
-					<div class="rounded-md py-5"><img src="https://placeimg.com/30/30/people" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>
+					<div class="rounded-md py-5"><img src="https://placeimg.com/30/30/any" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>
 						
-					<div class="rounded-md px-5 py-3 bg-gray-300 br-5"><img src="https://placeimg.com/30/30/people" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>					
+					<div class="rounded-md px-5 py-3 bg-gray-300 br-5"><img src="https://placeimg.com/30/30/tech" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>					
 
-					<div class="rounded-md py-5"><img src="https://placeimg.com/30/30/people" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>	
+					<div class="rounded-md py-5"><img src="https://placeimg.com/30/30/arch" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>	
 								
-					<div class="rounded-md py-5"><img src="https://placeimg.com/30/30/people" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>				
+					<div class="rounded-md py-5"><img src="https://placeimg.com/30/30/nature" class="rounded-full h-12 w-12 items-center justify-center inline"> Arena Sport</div>				
                         <button type="submit" class="br-5 py-2 px-5 bg-purple-500 absolute rounded-full bottom-0">add project</button>
 				</div>
 			</div>

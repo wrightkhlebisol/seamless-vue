@@ -5,17 +5,17 @@
         v-show="showModal"
     >
         <div
-            class="flex flex-row justify-around py-10 font-bold text-white text-2xl"
+            class="flex flex-row justify-around py-10 font-bold text-white text-2xl cursor-pointer"
             @click="closeModal"
         >
-            <div>X Close Form</div>
+            <div @click="$emit('closeForm')">X Close Form</div>
             <div>{{ updateStatus }}</div>
         </div>
         <form
             @submit="updateUser()"
             class="bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4"
         >
-            <input type="hidden" v-model="employeeId" />
+            <input type="hidden" v-model="propUserId" />
             <div class="mb-4">
                 <label
                     class="block text-gray-700 text-sm font-bold mb-2"
@@ -26,7 +26,7 @@
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    v-model="employee_name"
+                    v-model="name"
                     placeholder="Name"
                 />
             </div>
@@ -42,7 +42,7 @@
                 border rounded w-full py-2 px-3 text-gray-700 leading-tight
                 focus:outline-none focus:shadow-outline"
                     type="text"
-                    v-model="employee_role"
+                    v-model="role"
                     placeholder="Role"
                 />
             </div>
@@ -56,7 +56,7 @@
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    v-model="employee_salary"
+                    v-model="salary"
                     placeholder="Salary"
                 />
             </div>
@@ -70,7 +70,7 @@
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    v-model="employment_type"
+                    v-model="type"
                     placeholder="Employment Type"
                 />
             </div>
@@ -84,7 +84,7 @@
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
-                    v-model="employment_status"
+                    v-model="status"
                     placeholder="Employment Status"
                 />
             </div>
@@ -106,12 +106,12 @@
 export default {
     data() {
         return {
-            employeeId: this.propUserId,
-            employee_name: this.name,
-            employee_role: this.role,
-            employee_salary: this.salary,
-            employment_type: this.type,
-            employment_status: this.status,
+            // employeeId: this.propUserId,
+            // employee_name: this.name,
+            // employee_role: this.role,
+            // employee_salary: this.salary,
+            // employment_type: this.type,
+            // employment_status: this.status,
             showModal: true,
             updateStatus: "Update Employee"
         };
@@ -123,12 +123,12 @@ export default {
         updateUser() {
             this.updateStatus = ". . . Updating employee";
             axios
-                .put(`api/employee/${this.employeeId}`, {
-                    employee_name: this.employee_name,
-                    employee_role: this.employee_role,
-                    employee_salary: this.employee_salary,
-                    employment_type: this.employment_type,
-                    employment_status: this.employment_status
+                .put(`api/employee/${this.propUserId}`, {
+                    employee_name: this.name,
+                    employee_role: this.role,
+                    employee_salary: this.salary,
+                    employment_type: this.type,
+                    employment_status: this.status
                 })
                 .then(res => {
                     this.updateStatus = "Employee Updated !!!";
@@ -138,7 +138,6 @@ export default {
                 .catch(err => {
                     this.updateStatus =
                         "Employee Update Failed, Check the form !!!";
-                    console.log(err);
                 });
         },
         closeModal() {

@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     public function index(Employee $employee)
     {
         //
-        return $employee->all();
+        return $employee->orderByDesc('created_at')->get();
     }
 
 
