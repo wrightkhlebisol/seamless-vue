@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="container mx-auto my-48 shadow-2xl rounded-lg text-gray-700">
+	<div class="container mx-auto my-10 shadow-2xl rounded-lg text-gray-700">
 		<div class="py-6 px-4 flex justify-between bg-white rounded-t-lg">
 			<div>
 				<img src="{{asset('img/internia-logo.png')}}" class="inline mx-5 rounded-full h-16 w-16 items-center justify-center"/>
