@@ -23,7 +23,7 @@
 						<i class="far fa-envelope"></i>
 					</p>
 					<img
-                        src="https://i.pravatar.cc/30?u=j"
+                        src="https://i.pravatar.cc/50?u=xf"
                         class="inline mx-5 rounded-full h-16 w-16 items-center justify-center"
                     />
 				</div>
@@ -33,7 +33,7 @@
 		<div class="flex bg-gray-300 rounded-b-lg">
 			<div class="pl-5 w-1/3">
 				<h2 class="my-5 text-4xl font-bold mx-10">employee</h2>
-				<div class="flex flex-col bg-white ml-5 p-10 shadow-2xl sticky rounded-lg h-screen text-xl font-bold">
+				<div class="flex flex-col bg-white ml-5 p-10 shadow-2xl sticky rounded-lg text-xl font-bold">
 					<h3>
 						<img
                         src="{{ asset('img/internia-logo-circle.png') }}"
