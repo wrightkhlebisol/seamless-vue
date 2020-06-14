@@ -102,6 +102,8 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
     data() {
         return {
@@ -117,6 +119,9 @@ export default {
         };
     },
     methods: {
+        useMoment(){
+            
+        },
         showCreateModal() {
             this.showCreate = !this.showCreate;
         },

@@ -7,7 +7,7 @@
 				<img src="{{asset('img/internia-logo.png')}}" class="inline mx-5 rounded-full h-16 w-16 items-center justify-center"/>
 				<p class="inline font-bold text-4xl">Internia</p>
 			</div>
-			<div class="flex text-2xl mt-2 font-medium text-gray-600">
+			<div class="flex content-center font-medium text-gray-600 my-auto">
 				<div class="mx-3">Calendar</div>
 				<div class="mx-3">Statistic</div>
 				<div class="mx-3">Employee</div>
