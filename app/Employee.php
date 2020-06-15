@@ -14,7 +14,8 @@ class Employee extends Model
 
     public function getCreatedAtAttribute($value)
     {
-        $dt = Carbon::now();
-        return $dt->diffForHumans($value);
+        $dt = Carbon::createFromDate($value);
+
+        return $dt->diffForHumans();
     }
 }
