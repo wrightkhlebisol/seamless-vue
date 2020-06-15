@@ -2029,7 +2029,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    useMoment: function useMoment() {},
     showCreateModal: function showCreateModal() {
       this.showCreate = !this.showCreate;
     },
@@ -2057,9 +2056,11 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"]();
     },
     deleteUser: function deleteUser(userId) {
+      var _this3 = this;
+
       if (confirm("Are you sure you want to delete employee ".concat(userId))) {
         axios["delete"]("/api/employee/".concat(userId)).then(function (data) {
-          location.reload();
+          _this3.getAllUsers();
         })["catch"]();
       }
     }

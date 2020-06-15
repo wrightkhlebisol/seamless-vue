@@ -119,9 +119,6 @@ export default {
         };
     },
     methods: {
-        useMoment(){
-            
-        },
         showCreateModal() {
             this.showCreate = !this.showCreate;
         },
@@ -155,7 +152,7 @@ export default {
                 axios
                     .delete(`/api/employee/${userId}`)
                     .then(data => {
-                        location.reload();
+                        this.getAllUsers();
                     })
                     .catch();
             }
