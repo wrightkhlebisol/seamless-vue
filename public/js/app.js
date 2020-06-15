@@ -2013,6 +2013,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2216,8 +2218,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2245,7 +2245,9 @@ __webpack_require__.r(__webpack_exports__);
         employment_status: this.status
       }).then(function (res) {
         _this.updateStatus = "Employee Updated !!!";
-        setTimeout(location.reload(), 4000);
+
+        _this.$emit('userUpdatedEvent');
+
         res.data;
       })["catch"](function (err) {
         _this.updateStatus = "Employee Update Failed, Check the form !!!";
@@ -2394,7 +2396,9 @@ __webpack_require__.r(__webpack_exports__);
         employment_status: this.employment_status
       }).then(function (res) {
         _this.createStatus = "Employee Created !!!";
-        setTimeout(location.reload(), 4000);
+
+        _this.$emit('userCreatedEvent');
+
         res.data;
       })["catch"](function (err) {
         _this.createStatus = "Employee Creation Failed, Check the form !!!";
@@ -59130,7 +59134,13 @@ var render = function() {
           type: _vm.employment_type,
           status: _vm.employment_status
         },
-        on: { closeForm: _vm.showUpdateModal }
+        on: {
+          closeForm: _vm.showUpdateModal,
+          userUpdatedEvent: function($event) {
+            _vm.getAllUsers()
+            _vm.showUpdateModal()
+          }
+        }
       }),
       _vm._v(" "),
       _c("user-create", {
@@ -59142,7 +59152,13 @@ var render = function() {
             expression: "showCreate"
           }
         ],
-        on: { closeForm: _vm.showCreateModal }
+        on: {
+          closeForm: _vm.showCreateModal,
+          userCreatedEvent: function($event) {
+            _vm.getAllUsers()
+            _vm.showCreateModal()
+          }
+        }
       })
     ],
     1
@@ -59269,7 +59285,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "flex flex-row justify-around py-10 font-bold text-white text-2xl cursor-pointer",
+            "flex flex-row justify-around py-10 font-bold text-white text-xl cursor-pointer",
           on: { click: _vm.closeModal }
         },
         [
@@ -59291,14 +59307,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "form",
-        {
-          staticClass: "bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4",
-          on: {
-            submit: function($event) {
-              return _vm.updateUser()
-            }
-          }
-        },
+        { staticClass: "bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4" },
         [
           _c("input", {
             directives: [

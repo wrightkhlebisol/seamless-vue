@@ -123,8 +123,8 @@ export default {
                     employment_status: this.employment_status
                 })
                 .then(res => {
-                    this.createStatus = "Employee Created !!!";
-                    setTimeout(location.reload(), 4000);
+                    this.createStatus = "Employee Created !!!";                    
+                    this.$emit('userCreatedEvent')
                     res.data;
                 })
                 .catch(err => {

@@ -5,15 +5,13 @@
         v-show="showModal"
     >
         <div
-            class="flex flex-row justify-around py-10 font-bold text-white text-2xl cursor-pointer"
+            class="flex flex-row justify-around py-10 font-bold text-white text-xl cursor-pointer"
             @click="closeModal"
         >
             <div @click="$emit('closeForm')">X Close Form</div>
             <div>{{ updateStatus }}</div>
         </div>
-        <form
-            @submit="updateUser()"
-            class="bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4"
+        <form class="bg-white shadow-md rounded px-8  pt-6 pb-8 mb-4"
         >
             <input type="hidden" v-model="propUserId" />
             <div class="mb-4">
@@ -132,7 +130,7 @@ export default {
                 })
                 .then(res => {
                     this.updateStatus = "Employee Updated !!!";
-                    setTimeout(location.reload(), 4000);
+                    this.$emit('userUpdatedEvent')
                     res.data;
                 })
                 .catch(err => {

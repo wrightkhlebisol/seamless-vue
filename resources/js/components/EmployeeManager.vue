@@ -93,10 +93,12 @@
             :type="employment_type"
             :status="employment_status"
             @closeForm="showUpdateModal"
+            @userUpdatedEvent = "getAllUsers(); showUpdateModal();"
         ></update-user>
         <user-create
             v-show="showCreate"
             @closeForm="showCreateModal"
+            @userCreatedEvent = "getAllUsers(); showCreateModal();"            
         ></user-create>
     </div>
 </template>
